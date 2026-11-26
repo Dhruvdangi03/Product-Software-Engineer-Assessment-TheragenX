@@ -1,0 +1,212 @@
+{
+  "document_id" : "D05",
+  "catalog_version" : "1.0",
+  "model" : "gemini/gemini-3.5-flash",
+  "flags" : [ ],
+  "cases" : [ {
+    "case_index" : 0,
+    "label" : "D.L.",
+    "fields" : {
+      "patient_initials" : {
+        "status" : "extracted",
+        "value" : "DL",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Initials: D.L.",
+          "start" : 266,
+          "end" : 280
+        } ]
+      },
+      "patient_age_years" : {
+        "status" : "conflict",
+        "provenance" : [ {
+          "quote" : "Age: 54",
+          "start" : 281,
+          "end" : 288
+        }, {
+          "quote" : "45-year-old",
+          "start" : 756,
+          "end" : 767
+        } ],
+        "note" : "Demographics list age as 54, but narrative describes patient as 45-year-old."
+      },
+      "patient_sex" : {
+        "status" : "extracted",
+        "value" : "male",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Sex: Male",
+          "start" : 289,
+          "end" : 298
+        }, {
+          "quote" : "gentleman",
+          "start" : 768,
+          "end" : 777
+        } ]
+      },
+      "suspect_drug_name" : {
+        "status" : "extracted",
+        "value" : "clozapine",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Clozapine 100 mg tablets",
+          "start" : 362,
+          "end" : 386
+        }, {
+          "quote" : "causally related to clozapine",
+          "start" : 1847,
+          "end" : 1876
+        } ]
+      },
+      "suspect_drug_dose_value" : {
+        "status" : "extracted",
+        "value" : 300,
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Current dose 300 mg orally once daily",
+          "start" : 388,
+          "end" : 425
+        } ]
+      },
+      "suspect_drug_dose_unit" : {
+        "status" : "extracted",
+        "value" : "mg",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "300 mg",
+          "start" : 401,
+          "end" : 407
+        } ]
+      },
+      "suspect_drug_route" : {
+        "status" : "extracted",
+        "value" : "oral",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "orally",
+          "start" : 408,
+          "end" : 414
+        } ]
+      },
+      "suspect_drug_start_date" : {
+        "status" : "extracted",
+        "value" : "2026-02-09",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Date started: 9 February 2026",
+          "start" : 460,
+          "end" : 489
+        } ]
+      },
+      "event_terms" : {
+        "status" : "extracted",
+        "value" : [ "agranulocytosis", "neutropenic fever", "sore throat", "fever" ],
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "sore throat",
+          "start" : 1185,
+          "end" : 1196
+        }, {
+          "quote" : "fever",
+          "start" : 1201,
+          "end" : 1206
+        }, {
+          "quote" : "Agranulocytosis",
+          "start" : 1807,
+          "end" : 1822
+        }, {
+          "quote" : "neutropenic fever",
+          "start" : 1828,
+          "end" : 1845
+        } ]
+      },
+      "event_onset_date" : {
+        "status" : "extracted",
+        "value" : "2026-04-04",
+        "confidence" : "medium",
+        "provenance" : [ {
+          "quote" : "6 April 2026",
+          "start" : 1069,
+          "end" : 1081
+        }, {
+          "quote" : "for two days",
+          "start" : 1231,
+          "end" : 1243
+        } ],
+        "note" : "Derived as 2 days prior to presentation on 6 April 2026."
+      },
+      "event_outcome" : {
+        "status" : "extracted",
+        "value" : "recovering",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "improving",
+          "start" : 1685,
+          "end" : 1694
+        } ]
+      },
+      "seriousness_criteria" : {
+        "status" : "extracted",
+        "value" : [ "life_threatening", "hospitalization" ],
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Life-threatening: Yes",
+          "start" : 1742,
+          "end" : 1763
+        }, {
+          "quote" : "Hospitalisation: Yes",
+          "start" : 1764,
+          "end" : 1784
+        }, {
+          "quote" : "admitted to the acute medical unit",
+          "start" : 1252,
+          "end" : 1286
+        } ]
+      },
+      "reporter_type" : {
+        "status" : "extracted",
+        "value" : "physician",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Dr Owen Faulkner, Consultant Psychiatrist",
+          "start" : 207,
+          "end" : 248
+        } ]
+      },
+      "report_date" : {
+        "status" : "extracted",
+        "value" : "2026-04-11",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Report date: 11 April 2026",
+          "start" : 159,
+          "end" : 185
+        } ]
+      },
+      "country" : {
+        "status" : "extracted",
+        "value" : "AU",
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Australia",
+          "start" : 71,
+          "end" : 80
+        } ]
+      },
+      "concomitant_drugs" : {
+        "status" : "extracted",
+        "value" : [ "sodium valproate", "lorazepam" ],
+        "confidence" : "high",
+        "provenance" : [ {
+          "quote" : "Sodium valproate",
+          "start" : 553,
+          "end" : 569
+        }, {
+          "quote" : "Lorazepam",
+          "start" : 610,
+          "end" : 619
+        } ]
+      }
+    }
+  } ]
+}

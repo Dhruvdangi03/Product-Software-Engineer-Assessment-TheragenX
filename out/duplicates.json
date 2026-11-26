@@ -1,0 +1,7 @@
+{
+  "groups" : [ {
+    "document_ids" : [ "S01", "S02" ],
+    "confidence" : "high",
+    "reason" : "Same patient (Patient initials, Age (years), Sex); 9 of 10 other fields match (Suspect drug, Dose, Dose unit, Route, Drug start date, Reaction onset date, Outcome, Seriousness, Concomitant drugs)."
+  } ]
+}
