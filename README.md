@@ -61,6 +61,8 @@ npm --prefix ui run typecheck     # npx tsc --noEmit
 
 Both test suites run without network once the dependencies are installed.
 
+See [TESTING.md](TESTING.md) for a step-by-step check of every feature.
+
 ## Score with the checker
 
 ```bash
