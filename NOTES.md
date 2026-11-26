@@ -200,15 +200,24 @@ All 62 extracted values on these documents point to a quote at the right positio
 
 ## AI tools
 
-I used **Claude Code** (Claude Opus 5.5) throughout:
-- to read the brief and plan the work in phases
-- to write the backend, the prompt, the tests and the UI
-- to run the pipeline, the checker and the test suites
-- to check the screen in a browser
+**Tools**
+- **Claude Code** (Claude Opus 5.5) in the terminal, for planning, code, tests, the extraction prompt and the UI
+- **Claude in Chrome**, used by Claude Code to check the running UI in a browser
+- **Google Gemini** (`gemini-3.5-flash`) as the extraction model, the only model at runtime
 
-I reviewed the plan and the outputs, and directed scope and code style: plain, small classes, explicit errors, a commit per feature.
+**How I worked with it**
+1. **Planning.** I gave Claude Code the brief and the materials and asked for a phased plan. I chose Gemini as the provider and asked for all four stretch items. I asked for plain, easy-to-navigate code, because I have to explain and change it live, and I cut the schedule to one day.
+2. **Building.** Claude Code wrote the backend, the system prompt, the tests and the UI phase by phase, following the plan and the code-style rules (feature packages, small classes, records, explicit errors, no field ids in code). I asked for a commit per finished feature with tests for each.
+3. **Recording.** I put my Gemini key in a git-ignored `.env` file; it was never pasted into the chat. Claude Code ran the pipeline in record mode, scored the output with `tools/check.py`, and checked the four documents without answers against the text by hand.
+4. **Checking.** Claude Code ran the test suites, `replay.sh` and a scan of the git history for keys, and walked through the UI in Chrome (selection and highlighting, conflicts, case switching, the no-case screen, review actions, duplicates). At my request it also wrote [TESTING.md](TESTING.md), which lists every check with its expected result, so I can repeat them myself.
 
-Design prompt used for the UI:
+**Where judgement was needed** (things the AI did not get right first time, or that needed a decision):
+- **Model.** `gemini-2.5-flash` is no longer offered to new keys, and `gemini-3.8-flash` was overloaded, so we listed the available models and switched to `gemini-3.5-flash`. Following Google's advice for Gemini 3+ models, the temperature stays at 1.0.
+- **Provider errors.** Gemini returned repeated 503 "high demand" errors and then a quota error. The retry and resume logic handled both, but the free-tier daily quota ran out before D04 could be re-recorded with an improved prompt rule. We reverted that rule so the committed prompt matches the recordings exactly, and logged the D04 issue below instead of hiding it.
+- **Prompt scope.** The first draft of a route rule was worded around D04's mother and baby. We rewrote it as a general rule about exposure through another person, to avoid special-casing a document.
+- **Git.** One `git add` silently failed, leaving the first commit without its files. The branch was not yet pushed, so we folded the files into that commit before merging.
+
+**UI design prompt.** I did not write a separate design prompt myself. Claude Code wrote this design brief from the brief's UI requirements at the start of the UI phase, built the screen from it, and I accepted the result:
 
 > Design a review screen for a pharmacovigilance case intake tool. A reviewer checks values that a language model extracted from an adverse-event report against the report text. Speed and trust matter more than decoration: the reviewer must find the risky fields without reading every row, and see where every value came from.
 >
