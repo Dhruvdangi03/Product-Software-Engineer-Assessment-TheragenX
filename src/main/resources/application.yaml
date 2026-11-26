@@ -1,3 +1,42 @@
 spring:
   application:
-    name: product-software-engineer-assessment-theragenX
+    name: case-intake
+  main:
+    banner-mode: off
+
+server:
+  port: 8080
+
+intake:
+  # Paths are relative to the repository root, where every script and test runs from.
+  catalog-path: catalog/field_catalog.json
+  documents-dir: documents
+  output-dir: out
+  fixtures-dir: fixtures
+  reviews-dir: reviews
+  schema-dir: schema
+
+  llm:
+    # replay: from fixtures only, no network | record-missing: call the model for documents
+    # without a fixture | record-all: call the model for every document and overwrite fixtures
+    mode: replay
+    provider: gemini
+    model: gemini-3.5-flash
+    base-url: https://generativelanguage.googleapis.com/v1beta
+    # Never put a key in this file. It comes from the environment.
+    api-key: ${GEMINI_API_KEY:}
+    # Google advises keeping Gemini 3+ models at their default temperature; lower values can
+    # make them loop. Determinism comes from replaying fixtures, not from the temperature.
+    temperature: 1.0
+    max-output-tokens: 32768
+    request-timeout: 180s
+    # Spaces requests out to stay under the free tier's requests-per-minute limit.
+    min-interval-between-requests: 7s
+    max-attempts: 5
+    initial-backoff: 10s
+
+  duplicates:
+    identity-sections: [patient]
+    ignored-sections: [report]
+    min-identity-fields-compared: 2
+    min-match-ratio: 0.5
