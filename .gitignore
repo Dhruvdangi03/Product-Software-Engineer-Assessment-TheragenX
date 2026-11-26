@@ -43,3 +43,6 @@ assessment-materials/
 ### Node / UI ###
 node_modules/
 ui/dist/
+
+### Reviewer decisions made in the UI (local state, not part of the submission) ###
+reviews/
