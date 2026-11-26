@@ -32,5 +32,14 @@ build/
 ### VS Code ###
 .vscode/
 
-### TheragenX assessment materials (from the email, kept local) ###
+### Local copies of the email attachments (PDFs + original zip) ###
 assessment-materials/
+
+### Secrets - never commit an API key ###
+.env
+.env.*
+!.env.example
+
+### Node / UI ###
+node_modules/
+ui/dist/
