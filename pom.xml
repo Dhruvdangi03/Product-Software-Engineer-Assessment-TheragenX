@@ -9,30 +9,27 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.theragenx</groupId>
-	<artifactId>product-software-engineer-assessment-theragenX</artifactId>
+	<artifactId>case-intake</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+	<name>case-intake</name>
+	<description>Adverse event case intake: LLM extraction pipeline, REST API and review UI backend</description>
+
 	<properties>
 		<java.version>21</java.version>
+		<json-schema-validator.version>1.5.6</json-schema-validator.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Validates every output file against schema/extraction.schema.json before it is written. -->
+		<dependency>
+			<groupId>com.networknt</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${json-schema-validator.version}</version>
 		</dependency>
 
 		<dependency>
@@ -43,6 +40,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>case-intake</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
